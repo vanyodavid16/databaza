@@ -1,9 +1,7 @@
-SELECT orders.orderid , 
-customers.contactname , 
-categories.categoryname , 
-products.price * orderdetails.quantity AS hodnota
+SELECT orders.order_id, 
+customers.customer_name,
+products.cagegory,
+orders.sales
 FROM orders 
-JOIN customers ON orders.customerid = customers.customerid
-JOIN orderdetails ON orders.orderid = orderdetails.orderid
-JOIN products ON orderdetails.productid = products.productid
-JOIN categories ON products.categoryid = categories.categoryid
+JOIN customers ON orders.customer_id = customers.customer_id
+JOIN products ON orders.product_id = products.product_id
