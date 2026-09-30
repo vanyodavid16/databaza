@@ -1,7 +1,5 @@
-SELECT categories.categoryname , 
-AVG(orders.discount) AS zlava
-FROM categories
-JOIN product ON categories.categoryid = product.categoryid
-JOIN orderdetails ON products.productid = orderdetails.productid
-JOIN orders ON orderdetails.orderid = orders.orderid 
-GROUP BY categories.categoryname
+SELECT products.category,
+AVG(orders.discount) AS priemer
+FROM products
+JOIN orders ON products.product_id = orders.product_id
+GROUP BY products.category
