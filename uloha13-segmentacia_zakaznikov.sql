@@ -1,12 +1,10 @@
-SELECT customers.customername ,
-SUM(products.price * orderdetails.quantity) AS hodnota 
-AVG(orders.disount) AS zlava
-COUNT (DISCTINCT orders.orderid) AS pocet
-CASE 
-WHEN SUM(products.price * orderdetails.quantity) > 2500 THEN 'VIP'
-ELSE 'Standard' END AS typzakaznika
+SELECT customers.customer_name,
+SUM(orders.sales) AS hodnota
+AVG(orders.discount) AS priemer
+COUNT(DISTINCT orders.order_id) AS pocet
+CASE WHEN SUM(orders.sales) > 2500 THEN 'VIP'
+ELSE 'REGULAR' END AS typ_zakaznika
 FROM customers
-JOIN orders ON customers.customerid = orders.customerid
-JOIN orderdetails ON orders.orderid = orderdetails.orderid
-GROUP BY customers.customername
-ORDER BY hodnota DESC;
+JOIN orders ON customers.customer_id = orders.customer_id
+GROUP BY customers.customer_name
+ORDER BY SUM(orders.sales) DESC

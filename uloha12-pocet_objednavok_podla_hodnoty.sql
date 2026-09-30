@@ -1,13 +1,6 @@
-SELECT customers.region , 
-SUM( CASE WHEN ordervalue > 1000 THEN 1 ELSE 0 end) AS highvalue ,
-SUM( CASE WHEN ordervalue <= 1000 THEN 1 ELSE 0 end) AS lowvalue 
+SELECT customers.region,
+SUM( CASE WHEN orders.sales > 1000 THEN 1 ELSE 0 END ) AS high_value
+SUM( CASE WHEN orders.sales <=1000 THEN 1 ELSE 0 END ) AS low_value
 FROM customers
-JOIN orders ON customers.customerid = orders.customerid
-(SELECT orderdetails.orderid, 
-SUM(products.price * orderdetails.quantity) AS ordervalue
-FROM orderdetails
-JOIN products ON orderdetails.productid = products.productid
-GROUP BY orderdetails.orderid
-) AS ordertotal
-ON orders.orderid = ordertotal.orderid
-GROUP BY customers.region ;
+JOIN orders ON customers.customer_id = orders.customer_id
+GROUP BY customers.region
