@@ -1,5 +1,4 @@
-SELECT products.productname , 
-SUM(products.price * orderdetails.quantity) AS hodnota 
+SELECT products.product_name, 
+SUM(orders.sales) AS hodnota
 FROM products
-LEFT JOIN orderdetails ON products.productid = orderdetails.productid
-GROUP BY products.productname
+LEFT JOIN orders ON products.product_id = orders.product_id
