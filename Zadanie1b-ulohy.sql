@@ -32,8 +32,16 @@ FROM flourmills_sales
 SELECT month,monthly_sales
 FROM 
 (SELECT
-    EXTRACT(MONTH FROM sale_date) AS month,
-    SUM(total_amount) AS monthly_sales
-    FROM flourmills_sales
-    GROUP BY EXTRACT(MONTH FROM sale_date)) AS mesiac
+EXTRACT(MONTH FROM sale_date) AS month,
+SUM(total_amount) AS monthly_sales
+FROM flourmills_sales
+GROUP BY EXTRACT(MONTH FROM sale_date)) AS mesiac
 ORDER BY MONTH DESC;
+
+-- Uloha 6 --
+SELECT product_category
+FROM (SELECT product_category, SUM(total_amount) AS total_sales
+FROM flourmills_sales
+GROUP BY product_category
+ORDER BY SUM(total_amount) DESC)
+WHERE total_sales > 50000000
