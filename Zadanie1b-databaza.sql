@@ -6,7 +6,7 @@ USE datacraftinglab_db;
 
 CREATE TABLE flourmills_sales
 (
-sales INTEGER PRIMARY KEY,
+sales_id INTEGER PRIMARY KEY,
 sale_date DATE,
 region VARCHAR(100),
 state VARCHAR(100),
