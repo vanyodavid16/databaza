@@ -14,3 +14,9 @@ WHERE product_category = (
     LIMIT 1
 )
 ORDER BY sales_id;
+
+-- Uloha 3 --
+SELECT product_name, total_amount,
+(SELECT AVG(total_amount) FROM flourmills_sales
+) AS priemer
+FROM flourmills_sales
