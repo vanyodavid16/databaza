@@ -26,3 +26,14 @@ FROM flourmills_sales
 SELECT product_name, total_amount,
 total_amount / (SELECT SUM(total_amount) FROM flourmills_sales) AS amount_share
 FROM flourmills_sales
+
+
+-- Uloha 5 --
+SELECT month,monthly_sales
+FROM 
+(SELECT
+    EXTRACT(MONTH FROM sale_date) AS month,
+    SUM(total_amount) AS monthly_sales
+    FROM flourmills_sales
+    GROUP BY EXTRACT(MONTH FROM sale_date)) AS mesiac
+ORDER BY MONTH DESC;
